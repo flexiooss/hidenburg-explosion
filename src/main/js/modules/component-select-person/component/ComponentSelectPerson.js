@@ -19,7 +19,8 @@ export class ComponentSelectPerson {
     this.__publicStore = store.getStorePublic()
     console.log(this.__publicStore)
     this.__store.set(
-      new PersonList(new PersonBuilder().id('1').age(25).firstname('Romain').lastname('Mekarni').build())
+      new PersonList(new PersonBuilder().id('1').age(24).firstname('Romain').lastname('Mekarni').build(),
+        new PersonBuilder().id('2').age(25).firstname('Thomas').lastname('Chatelain').build())
     )
 
     this.__proxyStore = StoreBuilder.Proxy(
@@ -32,7 +33,8 @@ export class ComponentSelectPerson {
           o => o
         ),
         new PublicStoreHandler(this.__store),
-        this.__mapperPersonListToItemList)
+        (list) => this.__mapperPersonListToItemList(list)
+      )
     )
     console.log(this.__proxyStore)
     let configSelect = new ComponentSelectConfig()
@@ -51,7 +53,6 @@ export class ComponentSelectPerson {
   __mapperPersonListToItemList(list) {
     let itemListBuilder = new ItemListBuilder()
     list.forEach(el => {
-      console.log(el)
       itemListBuilder.addItem(el.id(), el.firstname() + ' ' + el.lastname() + ' ' + el.age() + ' ans')
     })
     console.log(itemListBuilder)
