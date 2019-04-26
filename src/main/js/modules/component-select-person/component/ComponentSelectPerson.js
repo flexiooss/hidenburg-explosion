@@ -17,10 +17,15 @@ export class ComponentSelectPerson {
     let store = new StorePerson(componentContext)
     this.__store = store.getStore()
     this.__publicStore = store.getStorePublic()
-    console.log(this.__publicStore)
     this.__store.set(
-      new PersonList(new PersonBuilder().id('1').age(24).firstname('Romain').lastname('Mekarni').build(),
-        new PersonBuilder().id('2').age(25).firstname('Thomas').lastname('Chatelain').build())
+      new PersonList(
+        new PersonBuilder().id('1').age(22).firstname('Romain').lastname('Merakni').build(),
+        new PersonBuilder().id('2').age(25).firstname('Timothé').lastname('Jonneat').build(),
+        new PersonBuilder().id('3').age(22).firstname('Camille').lastname('Bronu').build(),
+        new PersonBuilder().id('4').age(21).firstname('Thomas').lastname('Hayhay').build(),
+        new PersonBuilder().id('5').age(21).firstname('Fabrice').lastname('Bechaut').build(),
+        new PersonBuilder().id('6').age(21).firstname('Nicolas').lastname('Grandlen').build()
+      )
     )
 
     this.__proxyStore = StoreBuilder.Proxy(
@@ -36,7 +41,6 @@ export class ComponentSelectPerson {
         (list) => this.__mapperPersonListToItemList(list)
       )
     )
-    console.log(this.__proxyStore)
     let configSelect = new ComponentSelectConfig()
       .withComponentContext(componentContext)
       .withParentNode(parentNode)
@@ -53,9 +57,8 @@ export class ComponentSelectPerson {
   __mapperPersonListToItemList(list) {
     let itemListBuilder = new ItemListBuilder()
     list.forEach(el => {
-      itemListBuilder.addItem(el.id(), el.firstname() + ' ' + el.lastname() + ' ' + el.age() + ' ans')
+      itemListBuilder.addItem(el.id(), el.id(), el.firstname() + ' ' + el.lastname() + ' ' + el.age() + ' ans')
     })
-    console.log(itemListBuilder)
     return itemListBuilder.build()
   }
 
