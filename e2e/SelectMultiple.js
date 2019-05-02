@@ -1,15 +1,15 @@
 import {Selector} from 'testcafe';
 
-fixture('Select unique').page('https://ui.flexio.io:8080/');
+fixture('Select multiple').page('https://ui.flexio.io:8080/');
 
 let inputU = Selector('#HidenburgExplosion-hb_2-hb_2_1-inputHB')()
-let listU = Selector('#HidenburgExplosion-hb_2-hb_2_1-listHB')()
+
 let inputM = Selector('#HidenburgExplosion-hb_2-hb_2_2-inputHB')()
 let listM = Selector('#HidenburgExplosion-hb_2-hb_2_2-listHB')()
 let itemM1 = Selector('#HidenburgExplosion-hb_2-hb_2_2-item-1')()
 let itemM2 = Selector('#HidenburgExplosion-hb_2-hb_2_2-item-2')()
 
-test('la liste est visible quand je clique dessus ou sur le champ', async t => {
+test('La liste est visible quand je clique dessus ou sur le champ, disparait sinon', async t => {
   await t
     .expect(listM.visible).eql(false, 'Liste non visible')
     .click(inputM)
@@ -22,7 +22,7 @@ test('la liste est visible quand je clique dessus ou sur le champ', async t => {
     .expect(listM.visible).eql(false, 'Liste not visible')
 })
 
-test('Je peux selectionner plusieurs items', async t => {
+test('Je peux selectionner/déselectionner plusieurs items', async t => {
   await t
     .expect(inputM.value).eql('Choisir ...', 'Etat de base de l\'input')
     .click(inputM)

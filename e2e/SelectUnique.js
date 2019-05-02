@@ -9,7 +9,7 @@ let itemU2 = Selector('#HidenburgExplosion-hb_2-hb_2_1-item-2')()
 
 let inputM = Selector('#HidenburgExplosion-hb_2-hb_2_2-inputHB')()
 
-test('la liste est visible quand je clique dessus ou sur le champ', async t => {
+test('La liste est visible quand je clique dessus ou sur le champ, sinon disparait', async t => {
   await t
     .expect(listU.visible).eql(false, 'Liste non visible')
     .click(inputU)
