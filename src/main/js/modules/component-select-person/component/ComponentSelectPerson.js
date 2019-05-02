@@ -46,8 +46,12 @@ export class ComponentSelectPerson {
       .withParentNode(parentNode)
       .withProxyStore(this.__proxyStore)
 
-    this.__componentSelect = new ComponentSelect(configSelect)
-    this.__componentSelect.initView()
+    this.__componentSelectUnique = new ComponentSelect(configSelect)
+    this.__componentSelectUnique.initView()
+
+    configSelect.withProperties({multiple: true})
+    this.__componentSelectMultiple = new ComponentSelect(configSelect)
+    this.__componentSelectMultiple.initView()
   }
 
   initViews() {
