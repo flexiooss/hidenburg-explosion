@@ -16,7 +16,8 @@
     "eslint-plugin-standard": "^4.0.0",
     "hotballoon-test-dummies": "https://github.com/flexiooss/hotballoon-test-dummies.git",
     "stylelint": "^9.6.0",
-    "stylelint-config-standard": "^18.2.0"
+    "stylelint-config-standard": "^18.2.0",
+    "testcafe": "^1.1.3"
   },
   "dependencies": {
     "flexio-jshelpers": "https://github.com/flexiooss/flexio-jshelpers.git",
@@ -52,5 +53,8 @@
       "component-bootstrap": "src/main/js/modules/component-bootstrap",
       "component-select-person": "src/main/js/modules/component-select-person"
     }
+  },
+  "scripts": {
+    "debug": "testcafe $NODE_DEBUG_OPTION chrome"
   }
 }
