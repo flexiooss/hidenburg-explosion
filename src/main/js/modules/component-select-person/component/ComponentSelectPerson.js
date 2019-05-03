@@ -4,6 +4,7 @@ import {ProxyParams} from "hotballoon/src/js/Store/StoreBuilder";
 import {StorePerson} from "../stores/StorePerson";
 import {PersonList} from "./PersonList";
 import {PersonBuilder} from "../generated/io/flexio/component_select_person/types/Person";
+import {ViewContainerPerson} from "../view/ViewContainerPerson";
 
 export class ComponentSelectPerson {
   /**
@@ -41,21 +42,30 @@ export class ComponentSelectPerson {
         (list) => this.__mapperPersonListToItemList(list)
       )
     )
+
     let configSelect = new ComponentSelectConfig()
       .withComponentContext(componentContext)
-      .withParentNode(parentNode)
       .withProxyStore(this.__proxyStore)
 
     this.__componentSelectUnique = new ComponentSelect(configSelect)
-    this.__componentSelectUnique.initView()
 
     configSelect.withProperties({multiple: true})
     this.__componentSelectMultiple = new ComponentSelect(configSelect)
-    this.__componentSelectMultiple.initView()
   }
 
   initViews() {
+    this.__viewContainer = new ViewContainerPerson(this.__componentContext, this.__parentNode)
 
+    let label1 = 'Select unique'
+    let label2 = 'Select multiple'
+    this.__viewContainer.createViewItems(label1)
+    this.__viewContainer.createViewItems(label2)
+    this.__viewContainer.renderAndMount()
+
+    console.log(this.__viewContainer.getView(label1).getNode())
+
+    this.__componentSelectUnique.initView(this.__viewContainer.getView(label1).getNode())
+    this.__componentSelectMultiple.initView(this.__viewContainer.getView(label2).getNode())
   }
 
   __mapperPersonListToItemList(list) {
