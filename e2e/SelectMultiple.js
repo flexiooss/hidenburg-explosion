@@ -2,12 +2,12 @@ import {Selector} from 'testcafe';
 
 fixture('Select multiple').page('https://ui.flexio.io:8080/');
 
-let inputU = Selector('#HidenburgExplosion-hb_2-hb_2_1-inputHB')()
+let inputU = Selector('#HidenburgExplosion-hb_2-hb_2_2-inputHB')()
 
-let inputM = Selector('#HidenburgExplosion-hb_2-hb_2_2-inputHB')()
-let listM = Selector('#HidenburgExplosion-hb_2-hb_2_2-listHB')()
-let itemM1 = Selector('#HidenburgExplosion-hb_2-hb_2_2-item-1')()
-let itemM2 = Selector('#HidenburgExplosion-hb_2-hb_2_2-item-2')()
+let inputM = Selector('#HidenburgExplosion-hb_2-hb_2_3-inputHB')()
+let listM = Selector('#HidenburgExplosion-hb_2-hb_2_3-listHB')()
+let itemM1 = Selector('#HidenburgExplosion-hb_2-hb_2_3-item-1')()
+let itemM2 = Selector('#HidenburgExplosion-hb_2-hb_2_3-item-2')()
 
 test('La liste est visible quand je clique dessus ou sur le champ, disparait sinon', async t => {
   await t
@@ -19,7 +19,7 @@ test('La liste est visible quand je clique dessus ou sur le champ, disparait sin
     .click(itemM2)
     .expect(listM.visible).eql(true, 'Liste visible')
     .click(inputU)
-    .expect(listM.visible).eql(false, 'Liste not visible')
+    .expect(listM.visible).eql(false, 'Liste non visible')
 })
 
 test('Je peux selectionner/déselectionner plusieurs items', async t => {

@@ -2,12 +2,12 @@ import {Selector} from 'testcafe';
 
 fixture('Select unique').page('https://ui.flexio.io:8080/');
 
-let inputU = Selector('#HidenburgExplosion-hb_2-hb_2_1-inputHB')()
-let listU = Selector('#HidenburgExplosion-hb_2-hb_2_1-listHB')()
-let itemU1 = Selector('#HidenburgExplosion-hb_2-hb_2_1-item-1')()
-let itemU2 = Selector('#HidenburgExplosion-hb_2-hb_2_1-item-2')()
+let inputU = Selector('#HidenburgExplosion-hb_2-hb_2_2-inputHB')()
+let listU = Selector('#HidenburgExplosion-hb_2-hb_2_2-listHB')()
+let itemU1 = Selector('#HidenburgExplosion-hb_2-hb_2_2-item-1')()
+let itemU2 = Selector('#HidenburgExplosion-hb_2-hb_2_2-item-2')()
 
-let inputM = Selector('#HidenburgExplosion-hb_2-hb_2_2-inputHB')()
+let inputM = Selector('#HidenburgExplosion-hb_2-hb_2_3-inputHB')()
 
 test('La liste est visible quand je clique dessus ou sur le champ, sinon disparait', async t => {
   await t
