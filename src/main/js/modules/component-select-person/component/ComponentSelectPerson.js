@@ -45,7 +45,7 @@ export class ComponentSelectPerson {
 
     let configSelect = new ComponentSelectConfig()
       .withComponentContext(componentContext)
-      .withProxyStore(this.__proxyStore)
+      .withStore(this.__proxyStore)
 
     this.__componentSelectUnique = new ComponentSelect(configSelect)
 
@@ -58,8 +58,8 @@ export class ComponentSelectPerson {
 
     let label1 = 'Select unique'
     let label2 = 'Select multiple'
-    this.__viewContainer.createViewItems(label1)
-    this.__viewContainer.createViewItems(label2)
+    this.__viewContainer.createViewItems(label1, 'Peut selectionner un unique element. Fermeture non automatique')
+    this.__viewContainer.createViewItems(label2, 'Peut selectionner plusieurs elements')
     this.__viewContainer.renderAndMount()
 
     console.log(this.__viewContainer.getView(label1).getNode())

@@ -6,12 +6,14 @@ export class ViewSelectPerson extends View {
    *
    * @param {ViewContainer} viewContainer
    * @param {string} label
+   * @param {string} description
    */
-  constructor(viewContainer, label) {
+  constructor(viewContainer, label, description) {
     super(viewContainer)
 
     this.__node = null
     this.__label = label
+    this.__description = description
   }
 
   template() {
@@ -27,6 +29,10 @@ export class ViewSelectPerson extends View {
           this.html(
             e('h3')
               .text(this.__label)
+          ),
+          this.html(
+            e('p#description')
+              .text(this.__description)
           ),
           this.__node
         )

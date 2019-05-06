@@ -18,9 +18,10 @@ export class ViewContainerPerson extends ViewContainer {
 
   /**
    * @param {string} label
+   * @param {string} description
    */
-  createViewItems(label) {
-    let view = this.addView(new ViewSelectPerson(this, label))
+  createViewItems(label, description) {
+    let view = this.addView(new ViewSelectPerson(this, label, description))
     this.__views.set(label, view)
   }
 
