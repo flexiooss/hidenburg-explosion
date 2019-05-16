@@ -1,35 +1,30 @@
-import {Selector} from 'testcafe';
+import Page from "./Page";
 
 fixture('Select multiple').page('https://ui.flexio.io:8080/');
 
-let inputU = Selector('#HidenburgExplosion-hb_2-hb_2_2-inputHB')()
-
-let inputM = Selector('#HidenburgExplosion-hb_2-hb_2_3-inputHB')()
-let listM = Selector('#HidenburgExplosion-hb_2-hb_2_3-listHB')()
-let itemM1 = Selector('#HidenburgExplosion-hb_2-hb_2_3-item-1')()
-let itemM2 = Selector('#HidenburgExplosion-hb_2-hb_2_3-item-2')()
+const page = new Page()
 
 test('La liste est visible quand je clique dessus ou sur le champ, disparait sinon', async t => {
   await t
-    .expect(listM.visible).eql(false, 'Liste non visible')
-    .click(inputM)
-    .expect(listM.visible).eql(true, 'Liste visible')
-    .click(itemM1)
-    .expect(listM.visible).eql(true, 'Liste visible')
-    .click(itemM2)
-    .expect(listM.visible).eql(true, 'Liste visible')
-    .click(inputU)
-    .expect(listM.visible).eql(false, 'Liste non visible')
+    .expect(page.listM.visible).eql(false, 'Liste non visible')
+    .click(page.inputM)
+    .expect(page.listM.visible).eql(true, 'Liste visible')
+    .click(page.itemM1)
+    .expect(page.listM.visible).eql(true, 'Liste visible')
+    .click(page.itemM2)
+    .expect(page.listM.visible).eql(true, 'Liste visible')
+    .click(page.inputU)
+    .expect(page.listM.visible).eql(false, 'Liste non visible')
 })
 
 test('Je peux selectionner/déselectionner plusieurs items', async t => {
   await t
-    .expect(inputM.value).eql('Choisir ...', 'Etat de base de l\'input')
-    .click(inputM)
-    .click(itemM1)
-    .expect(inputM.value).eql(await itemM1.innerText)
-    .click(itemM2)
-    .expect(inputM.value).eql('2 éléments selectionnés')
-    .click(itemM1)
-    .expect(inputM.value).eql(await itemM2.innerText)
+    .expect(page.inputM.value).eql('Choisir ...', 'Etat de base de l\'input')
+    .click(page.inputM)
+    .click(page.itemM1)
+    .expect(page.inputM.value).eql(await page.itemM1.innerText)
+    .click(page.itemM2)
+    .expect(page.inputM.value).eql('2 éléments selectionnés')
+    .click(page.itemM1)
+    .expect(page.inputM.value).eql(await page.itemM2.innerText)
 });
