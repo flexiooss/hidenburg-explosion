@@ -39,9 +39,11 @@ test('Je peux selectionner une liste d\'item en faisant un shift clic', async t 
     .click(page.itemM2, {modifiers: {shift: true}})
     .expect(page.inputM.value).eql('2 éléments selectionnés')
     .expect(page.listM.visible).eql(true, 'Liste visible')
+    .expect(page.itemM1.getAttribute('selected')).eql('true')
+    .expect(page.itemM2.getAttribute('selected')).eql('true')
 })
 
-test('Je peux selectionner une liste d\'item en faisant un shift clic parmis les elements', async t => {
+test('Je peux selectionner une liste d\'item en faisant un shift clic parmi les elements', async t => {
   await t
     .expect(page.inputM.value).eql('Choisir ...', 'Etat de base de l\'input')
     .click(page.inputM)
