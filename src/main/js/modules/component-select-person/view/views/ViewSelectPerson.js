@@ -21,8 +21,6 @@ export class ViewSelectPerson extends View {
       e('div#container')
     )
 
-    console.log(this.__node)
-
     return this.html(
       e('div#' + camelCase(this.__label, ' '))
         .childNodes(

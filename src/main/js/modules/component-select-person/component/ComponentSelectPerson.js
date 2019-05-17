@@ -62,8 +62,6 @@ export class ComponentSelectPerson {
     this.__viewContainer.createViewItems(label2, 'Peut selectionner plusieurs elements')
     this.__viewContainer.renderAndMount()
 
-    console.log(this.__viewContainer.getView(label1).getNode())
-
     this.__componentSelectUnique.initView(this.__viewContainer.getView(label1).getNode())
     this.__componentSelectMultiple.initView(this.__viewContainer.getView(label2).getNode())
   }
