@@ -14,4 +14,4 @@ test('Je peux ouvrir et fermer les select avec la touche TAB', async t => {
     .pressKey('tab')
     .expect(page.listU.visible).eql(false, 'Liste non visible')
     .expect(page.listM.visible).eql(true, 'Liste non visible')
-})
+}).skip
