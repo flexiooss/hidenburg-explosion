@@ -5,6 +5,7 @@ import {StorePerson} from "../stores/StorePerson";
 import {PersonList} from "./PersonList";
 import {PersonBuilder} from "../generated/io/flexio/component_select_person/types/Person";
 import {ViewContainerPerson} from "../view/ViewContainerPerson";
+import {ComponentAtmosphereLayersBuilder} from "@flexio-oss/atmosphere-layers";
 
 export class ComponentSelectPerson {
   /**
@@ -43,27 +44,43 @@ export class ComponentSelectPerson {
       )
     )
 
-    let configSelect = new ComponentSelectConfig()
-      .withComponentContext(componentContext)
-      .withStore(this.__proxyStore)
-
-    this.__componentSelectUnique = new ComponentSelect(configSelect)
-
-    configSelect.withProperties({multiple: true})
-    this.__componentSelectMultiple = new ComponentSelect(configSelect)
+    this.__layersManager = ComponentAtmosphereLayersBuilder.build(this.__componentContext)
   }
 
   initViews() {
-    this.__viewContainer = new ViewContainerPerson(this.__componentContext, this.__parentNode)
+    this.__layer = this.__layersManager.addLayer()
+    this.__layersManager.mountView(this.__parentNode)
+
+    let node = this.__layersManager.getElementByLayer(this.__layer)
+    this.__viewContainer = new ViewContainerPerson(this.__componentContext, node)
 
     let label1 = 'Select unique'
     let label2 = 'Select multiple'
-    this.__viewContainer.createViewItems(label1, 'Peut selectionner un unique element. Fermeture non automatique')
+    this.__viewContainer.createViewItems(label1, 'Peut selectionner un unique element. Fermeture automatique')
     this.__viewContainer.createViewItems(label2, 'Peut selectionner plusieurs elements')
     this.__viewContainer.renderAndMount()
 
-    this.__componentSelectUnique.initView(this.__viewContainer.getView(label1).getNode())
-    this.__componentSelectMultiple.initView(this.__viewContainer.getView(label2).getNode())
+    let configSelect = new ComponentSelectConfig()
+      .withComponentContext(this.__componentContext)
+      .withStore(this.__proxyStore)
+      .withLayersManager(this.__layersManager)
+      .withParentNode(this.__viewContainer.getView(label1).getNode())
+
+    console.log(configSelect)
+    this.__componentSelectUnique = new ComponentSelect(configSelect)
+
+    configSelect = new ComponentSelectConfig()
+      .withComponentContext(this.__componentContext)
+      .withStore(this.__proxyStore)
+      .withLayersManager(this.__layersManager)
+      .withParentNode(this.__viewContainer.getView(label2).getNode())
+      .withProperties({multiple: true})
+
+    console.log(configSelect)
+    this.__componentSelectMultiple = new ComponentSelect(configSelect)
+
+    this.__componentSelectUnique.mountView()
+    this.__componentSelectMultiple.mountView()
   }
 
   __mapperPersonListToItemList(list) {
