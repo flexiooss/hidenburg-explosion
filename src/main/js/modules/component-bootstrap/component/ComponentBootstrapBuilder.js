@@ -1,6 +1,6 @@
 import {ComponentBootstrap} from './ComponentBootstrap'
 import {ComponentBootstrapPublic} from './ComponentBootstrapPublic'
-import {TypeCheck} from 'hotballoon'
+import {TypeCheck} from '@flexio-oss/hotballoon'
 import {assert, isNode} from 'flexio-jshelpers'
 
 export class ComponentBootstrapBuilder {

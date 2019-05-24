@@ -1,6 +1,6 @@
-import {InMemoryStoreParams, PublicStoreHandler, StoreTypeParam} from "hotballoon";
+import {InMemoryStoreParams, PublicStoreHandler, StoreTypeParam} from "@flexio-oss/hotballoon";
 import {PersonList} from "../component/PersonList";
-import {StoreBuilder} from "hotballoon/src/js/Store/StoreBuilder";
+import {StoreBuilder} from "@flexio-oss/hotballoon/src/js/Store/StoreBuilder";
 
 export class StorePerson {
   constructor(componentContext) {

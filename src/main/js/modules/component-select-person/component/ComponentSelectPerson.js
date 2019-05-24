@@ -1,6 +1,6 @@
 import {ComponentSelect, ComponentSelectConfig, ItemList, ItemListBuilder} from "hidenburg";
-import {PublicStoreHandler, StoreBuilder, StoreTypeParam} from "hotballoon";
-import {ProxyParams} from "hotballoon/src/js/Store/StoreBuilder";
+import {PublicStoreHandler, StoreBuilder, StoreTypeParam} from "@flexio-oss/hotballoon";
+import {ProxyParams} from "@flexio-oss/hotballoon/src/js/Store/StoreBuilder";
 import {StorePerson} from "../stores/StorePerson";
 import {PersonList} from "./PersonList";
 import {PersonBuilder} from "../generated/io/flexio/component_select_person/types/Person";
@@ -64,7 +64,6 @@ export class ComponentSelectPerson {
       .withComponentContext(this.__componentContext)
       .withStore(this.__proxyStore)
       .withLayersManager(this.__layersManager)
-      .withParentNode(this.__viewContainer.getView(label1).getNode())
 
     console.log(configSelect)
     this.__componentSelectUnique = new ComponentSelect(configSelect)
@@ -73,14 +72,13 @@ export class ComponentSelectPerson {
       .withComponentContext(this.__componentContext)
       .withStore(this.__proxyStore)
       .withLayersManager(this.__layersManager)
-      .withParentNode(this.__viewContainer.getView(label2).getNode())
       .withProperties({multiple: true})
 
     console.log(configSelect)
     this.__componentSelectMultiple = new ComponentSelect(configSelect)
 
-    this.__componentSelectUnique.mountView()
-    this.__componentSelectMultiple.mountView()
+    this.__componentSelectUnique.mountView(this.__viewContainer.getView(label1).getNode())
+    this.__componentSelectMultiple.mountView(this.__viewContainer.getView(label2).getNode())
   }
 
   __mapperPersonListToItemList(list) {

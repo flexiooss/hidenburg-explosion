@@ -1,4 +1,4 @@
-import {e, View} from 'hotballoon'
+import {e, View} from '@flexio-oss/hotballoon'
 import {camelCase} from 'flexio-jshelpers'
 
 export class ViewSelectPerson extends View {

@@ -1,5 +1,5 @@
 'use strict'
-import {TypeCheck} from 'hotballoon'
+import {TypeCheck} from '@flexio-oss/hotballoon'
 
 import {assertType, FLEXIO_IMPORT_OBJECT, isNode} from 'flexio-jshelpers'
 import '../generated/io/package'

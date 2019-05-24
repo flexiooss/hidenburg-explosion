@@ -20,10 +20,10 @@
     "testcafe": "^1.1.3"
   },
   "dependencies": {
+    "@flexio-oss/hotballoon": "^0.0.0-dev",
     "@flexio-oss/atmosphere-layers": "0.0.0-dev",
     "flexio-jshelpers": "https://github.com/flexiooss/flexio-jshelpers.git",
     "flexio-nodes-reconciliation": "https://github.com/flexiooss/flexio-nodes-reconciliation.git",
-    "hotballoon": "https://github.com/flexiooss/hotballoon.git",
     "hidenburg": "https://github.com/flexiooss/hidenburg#develop"
   },
   "hotballoon-shed": {

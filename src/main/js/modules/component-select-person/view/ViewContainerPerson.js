@@ -1,4 +1,4 @@
-import {ViewContainer, ViewContainerParameters} from 'hotballoon'
+import {ViewContainer, ViewContainerParameters} from '@flexio-oss/hotballoon'
 import {ViewSelectPerson} from "./views/ViewSelectPerson";
 
 export class ViewContainerPerson extends ViewContainer {

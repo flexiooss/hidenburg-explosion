@@ -1,5 +1,5 @@
 import {assertType, FLEXIO_IMPORT_OBJECT, isNode, isNull} from 'flexio-jshelpers'
-import {ActionBuilder, ActionParams, ActionTypeParam, TypeCheck} from 'hotballoon'
+import {ActionBuilder, ActionParams, ActionTypeParam, TypeCheck} from '@flexio-oss/hotballoon'
 import {ComponentSelectPerson} from "../../../component-select-person";
 
 const ActionInitialize = window[FLEXIO_IMPORT_OBJECT].io.flexio.component_bootstrap.actions.ActionInitialize
