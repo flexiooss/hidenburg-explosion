@@ -1,4 +1,4 @@
-import {ComponentSelect, ComponentSelectConfig, ItemList, ItemListBuilder} from "hidenburg";
+import {ComponentSelect, ComponentSelectConfig, ItemList, ItemListBuilder} from "@flexio-oss/hidenburg";
 import {PublicStoreHandler, StoreBuilder, StoreTypeParam} from "@flexio-oss/hotballoon";
 import {ProxyParams} from "@flexio-oss/hotballoon/src/js/Store/StoreBuilder";
 import {StorePerson} from "../stores/StorePerson";
@@ -6,6 +6,7 @@ import {PersonList} from "./PersonList";
 import {PersonBuilder} from "../generated/io/flexio/component_select_person/types/Person";
 import {ViewContainerPerson} from "../view/ViewContainerPerson";
 import {ComponentAtmosphereLayersBuilder} from "@flexio-oss/atmosphere-layers";
+import {TimePicker, TimePickerConfig} from "@flexio-oss/tea-time";
 
 export class ComponentSelectPerson {
   /**
@@ -56,29 +57,55 @@ export class ComponentSelectPerson {
 
     let label1 = 'Select unique'
     let label2 = 'Select multiple'
-    this.__viewContainer.createViewItems(label1, 'Peut selectionner un unique element. Fermeture automatique')
-    this.__viewContainer.createViewItems(label2, 'Peut selectionner plusieurs elements')
-    this.__viewContainer.renderAndMount()
+    let label3 = 'Time picker'
 
-    let configSelect = new ComponentSelectConfig()
+    this.__addSelectUnique(label1)
+    this.__addSelectMultiple(label2)
+    this.__addTimePicker(label3)
+
+    this.__render(label1, label2, label3)
+  }
+
+  __addSelectUnique(label) {
+    this.__viewContainer.createViewItems(label, 'Peut selectionner un unique element. Fermeture automatique')
+
+    let config = new ComponentSelectConfig()
       .withComponentContext(this.__componentContext)
       .withStore(this.__proxyStore)
       .withLayersManager(this.__layersManager)
 
-    console.log(configSelect)
-    this.__componentSelectUnique = new ComponentSelect(configSelect)
+    this.__componentSelectUnique = new ComponentSelect(config)
+  }
 
-    configSelect = new ComponentSelectConfig()
+  __addSelectMultiple(label) {
+    this.__viewContainer.createViewItems(label, 'Peut selectionner plusieurs elements')
+
+    let config = new ComponentSelectConfig()
       .withComponentContext(this.__componentContext)
       .withStore(this.__proxyStore)
       .withLayersManager(this.__layersManager)
       .withProperties({multiple: true})
 
-    console.log(configSelect)
-    this.__componentSelectMultiple = new ComponentSelect(configSelect)
+    this.__componentSelectMultiple = new ComponentSelect(config)
+  }
+
+  __addTimePicker(label){
+    this.__viewContainer.createViewItems(label, 'Select unique d\'heure, periode : 15')
+
+    let config = new TimePickerConfig()
+      .withLayersManager(this.__layersManager)
+      .withComponentContext(this.__componentContext)
+      // .setPeriodHalfHour()
+
+    this.__timePicker = new TimePicker(config)
+  }
+
+  __render(label1, label2, label3){
+    this.__viewContainer.renderAndMount()
 
     this.__componentSelectUnique.mountView(this.__viewContainer.getView(label1).getNode())
     this.__componentSelectMultiple.mountView(this.__viewContainer.getView(label2).getNode())
+    this.__timePicker.mountView(this.__viewContainer.getView(label3).getNode())
   }
 
   __mapperPersonListToItemList(list) {

@@ -15,9 +15,7 @@
       }
     }
   },
-  "peerDependencies": {
-    "flexio-jshelpers": "https://github.com/flexiooss/flexio-jshelpers.git",
-    "flexio-nodes-reconciliation": "https://github.com/flexiooss/flexio-nodes-reconciliation.git",
-    "hotballoon": "https://github.com/flexiooss/hotballoon.git"
+  "dependencies": {
+    "hidenburg-explosion": "file:../../../../.."
   }
 }

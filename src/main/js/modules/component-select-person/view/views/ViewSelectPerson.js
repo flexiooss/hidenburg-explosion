@@ -1,5 +1,5 @@
-import {e, View} from '@flexio-oss/hotballoon'
-import {camelCase} from 'flexio-jshelpers'
+import {e, View, RECONCILIATION_RULES} from '@flexio-oss/hotballoon'
+import {camelCase} from "@flexio-oss/js-type-helpers";
 
 export class ViewSelectPerson extends View {
   /**
@@ -27,10 +27,16 @@ export class ViewSelectPerson extends View {
           this.html(
             e('h3')
               .text(this.__label)
+              .reconciliationRules(
+                RECONCILIATION_RULES.BYPASS
+              )
           ),
           this.html(
             e('p#description')
               .text(this.__description)
+              .reconciliationRules(
+                RECONCILIATION_RULES.BYPASS
+              )
           ),
           this.__node
         )
